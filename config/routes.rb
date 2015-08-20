@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  # Routes for the Favorite resource:
+  # CREATE
+  get "/favorites/new", :controller => "favorites", :action => "new"
+  post "/create_favorite", :controller => "favorites", :action => "create"
+
+  # READ
+  get "/favorites", :controller => "favorites", :action => "index"
+  get "/favorites/:id", :controller => "favorites", :action => "show"
+
+  # UPDATE
+  get "/favorites/:id/edit", :controller => "favorites", :action => "edit"
+  post "/update_favorite/:id", :controller => "favorites", :action => "update"
+
+  # DELETE
+  get "/delete_favorite/:id", :controller => "favorites", :action => "destroy"
+  #------------------------------
+
+  devise_for :users
   # Routes for the Character resource:
   # CREATE
   get "/characters/new", :controller => "characters", :action => "new"
@@ -33,7 +51,9 @@ Rails.application.routes.draw do
   get "/delete_actor/:id", :controller => "actors", :action => "destroy"
   #------------------------------
 
-  get "/", :controller => "movies", :action => "index"
+  # get "/", :controller => "movies", :action => "index"
+
+  root "movies#index"
 
   # Routes for the Movie resource:
   # CREATE
